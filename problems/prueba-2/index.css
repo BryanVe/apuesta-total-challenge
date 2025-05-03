@@ -1,0 +1,55 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .checkbox__wrap {
+    label {
+      &:has(> input[type="checkbox"]) {
+        &::after {
+          content: "Desordenar";
+        }
+      }
+
+      &:has(> input[type="checkbox"]:checked) {
+        &::after {
+          content: "Ordenar";
+        }
+      }
+    }
+  }
+  
+  &:has(input[type="checkbox"]:checked) {
+    .items__item {
+      order: calc(9 - var(--order));
+    }
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 500px;
+    height: 500px;
+
+    .items__item {
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+
+      &:has(> img) {
+        grid-column-start: span 2;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
